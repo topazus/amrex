@@ -24,7 +24,7 @@ function (install_amrex_targets)
    if(WIN32)
        set(CMAKE_FILES_DIR   cmake)
    else()
-       set(CMAKE_FILES_DIR   lib/cmake/AMReX)
+       set(CMAKE_FILES_DIR   ${CMAKE_INSTALL_LIBDIR}/cmake/AMReX)
    endif()
    set(MODULE_PATH       Tools/CMake)       # Relative path to top level installation/build-tree
 
@@ -51,16 +51,16 @@ function (install_amrex_targets)
        install(
           TARGETS       ${_targets}
           EXPORT        AMReXTargets
-          ARCHIVE       DESTINATION lib
-          LIBRARY       DESTINATION lib
-          INCLUDES      DESTINATION include # Adds proper directory to INTERFACE_INCLUDE_DIRECTORIES
-          PUBLIC_HEADER DESTINATION include
-          RUNTIME       DESTINATION bin
+          ARCHIVE       DESTINATION ${CMAKE_INSTALL_LIBDIR}
+          LIBRARY       DESTINATION ${CMAKE_INSTALL_LIBDIR}
+          INCLUDES      DESTINATION ${CMAKE_INSTALL_INCLUDEDIR} # Adds proper directory to INTERFACE_INCLUDE_DIRECTORIES
+          PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+          RUNTIME       DESTINATION ${CMAKE_INSTALL_BINDIR}
           )
 
        install( EXPORT AMReXTargets
           NAMESPACE AMReX::
-          DESTINATION lib/cmake/AMReX )
+          DESTINATION ${CMAKE_FILES_DIR} )
 
        #
        # alias: last element will be legacy target

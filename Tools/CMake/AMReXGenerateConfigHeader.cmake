@@ -67,7 +67,7 @@ function ( generate_config_header )
        target_include_directories(amrex_${D}d PUBLIC $<BUILD_INTERFACE:${AMReX_BINARY_DIR}>)
 
        if(AMReX_INSTALL)
-           install(FILES "${AMReX_BINARY_DIR}/AMReX_Config_${D}D.H" DESTINATION include)
+           install(FILES "${AMReX_BINARY_DIR}/AMReX_Config_${D}D.H" DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
        endif()
 
        # unset defines variables
@@ -82,8 +82,8 @@ function ( generate_config_header )
           "${AMReX_BINARY_DIR}/AMReX_Config.H")  # legacy
 
    if(AMReX_INSTALL)
-      install(FILES "${AMReX_BINARY_DIR}/AMReX_Config.H" DESTINATION include)  # legacy
-      install(FILES "${AMReX_BINARY_DIR}/AMReX_Version.H" DESTINATION include)
+      install(FILES "${AMReX_BINARY_DIR}/AMReX_Config.H" DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})  # legacy
+      install(FILES "${AMReX_BINARY_DIR}/AMReX_Version.H" DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
    endif()
 
 endfunction ()
